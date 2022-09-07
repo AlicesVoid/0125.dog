@@ -80,6 +80,12 @@ p:last-child {
 	line-height: 1.25;
 }
 
+.imglist:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
 #mail:before { content: 'twiinarmageddonss'; }
 #mail:after { content: 'protonmail.com'; }
 
