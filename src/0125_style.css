@@ -60,7 +60,7 @@ p:last-child {
 
 
 .box {
-	/*background-color: #0f091a;*/
+	background-color: #0f091a;
 	background-color: hsla(65, 100%, 8%, 0.6);	border: 1px solid #ef1284;
 	border-radius: 5px;
 	padding: 10px;
