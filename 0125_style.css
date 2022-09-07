@@ -1,0 +1,11 @@
+/* ALICE VOID - edited 9/6/2022 */
+
+* { box-sizing: border-box;}
+
+body {
+    background-color: black;
+    background-image: -o-linear-gradient();
+    font-family: Arial, sans-serif;
+    color: aliceblue;
+    padding-top: 10px;
+}
