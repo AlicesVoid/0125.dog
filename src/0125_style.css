@@ -61,7 +61,7 @@ p:last-child {
 
 .box {
 	background-color: #0f091a;
-	background-color: hsla(310, 50%, 10%, 0.7);	border: 1px solid #ef1284;
+	background-color: hsla(65, 100%, 8%, 0.6);	border: 1px solid #ef1284;
 	border-radius: 5px;
 	padding: 10px;
 	font-size: 14px;
@@ -100,7 +100,7 @@ a.button {
 }
 
 a.button:hover {
-	background: hsla(310, 50%, 10%, 0.7);
+	background: hsla(65, 100%, 8%, 0.6);
 	transition: 0.15s;
 }
 
@@ -127,7 +127,7 @@ a.button:hover {
 
 #navbar {
 	background-color: #0f091a;
-	background-color: hsla(310, 50%, 10%, 0.7);	padding: 0;
+	background-color: hsla(65, 100%, 8%, 0.6);	padding: 0;
 	border-top-right-radius: 0;
 	border-top-left-radius: 0;
 	border-top-width: 0;
