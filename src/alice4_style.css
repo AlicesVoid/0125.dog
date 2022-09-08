@@ -232,10 +232,12 @@ a.button:hover {
 	.nomobile { display: none !important; }
 	
 	#header {
+		width: 100%;
 		margin: auto;
 	}
 
 	#navbar {
+		width: 100%;
 		margin: auto;
 	}
 
@@ -245,6 +247,7 @@ a.button:hover {
 	
 	#sidebar {
 		padding: 0;
+		width: 100%;
 		margin: auto;
 	}
 	
