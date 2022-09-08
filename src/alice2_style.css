@@ -231,17 +231,25 @@ a.button:hover {
 @media only screen and (max-width:799px) {
 	.nomobile { display: none !important; }
 	
-	body {
+	#header {
+		margin: auto;
+	}
+
+	#navbar {
+		margin: auto;
+	}
+
+	#body {
+		padding: 0;
+	}
+	
+	#sidebar {
 		padding: 0;
 		margin: auto;
 	}
 	
-	#sidebar {
-		display: none; 
-		padding: 0;
-	}
-	
 	#main {
 		width: 100%;
+		margin: auto;
 	}
 }
