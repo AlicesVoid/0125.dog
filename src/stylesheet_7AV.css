@@ -24,6 +24,7 @@ a {
     color: #f367af;
     text-decoration: none;
     font-weight: bold;
+	font-size: 110%;
 }
 
 a:hover { color: #f5ffff; }
@@ -34,8 +35,14 @@ h1,h2 {
     margin-bottom: 10px;
 }
 
-h3,h4 {
+h3 {
     color:#12efb0;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+h4 {
+    color:#f9e7f5;
     margin-top: 0;
     margin-bottom: 10px;
 }
@@ -43,7 +50,7 @@ h3,h4 {
 h1 {font-size: 44px}
 h2 {font-size: 40px}
 h3 {font-size: 32px}
-h4 {font-size: 30px}
+h4 {font-size: 20px}
 
 p:first-child {
     margin-top: 0;
@@ -132,6 +139,7 @@ a.button:hover {
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
 	width: 750px;
+	margin: auto;
 }
 	#header img {
 		max-width: 100%;
@@ -143,11 +151,12 @@ a.button:hover {
 
 #navbar {
 	font-size: 30px;
+	margin: auto;
 	background-color: #0f091a;
 	background-color: hsla(65, 78%, 15%, 0.6);	padding: 0; 
 	border-top-right-radius: 0; 
 	border-top-left-radius: 0;
-	border-top-width: 0; 
+	border-top-width: 0;
 	width: 750px;
 }
 
@@ -170,8 +179,8 @@ a.button:hover {
 
 #main {
 	font-size: 30px;
-	width: 520px;
-	background-color: hsla(83, 45%, 29%, 0.6); padding: 0; border: 1px solid #d62b89;
+	width: 750px;
+	background-color: hsla(83, 45%, 29%, 0.6); padding: 1px; border: 1px solid #d62b89;
 	/*margin: auto; */
 }
 
@@ -220,6 +229,7 @@ a.button:hover {
 	#main { 
 		grid-area: rhside; 
 		margin: auto;
+		margin-top: 10px;
 	}
 	
 	#footer {
