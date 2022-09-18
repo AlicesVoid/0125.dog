@@ -220,11 +220,11 @@ a.button:hover {
 		grid-area: side;
 		margin: 0;
 	}
-	
+	/*
 	#sidebar .box {
-		/*height: 100%; */
+		/*height: 100%; 
 	}
-	
+	*/
 	#main { 
 		grid-area: rhside; 
 		margin: auto;
