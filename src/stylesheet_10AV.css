@@ -4,6 +4,13 @@
 
 * { box-sizing: border-box;}
 
+
+HTML,BODY
+	{cursor: 
+		url("https://downloads.totallyfreecursors.com/cursor_files/neopets64.cur"), 
+		url("https://downloads.totallyfreecursors.com/thumbnails/64.gif"), auto;
+}
+
 body {
     background-color: black;
     background-image: url(movestarbackground.gif); 
@@ -26,7 +33,13 @@ a {
     font-weight: bold;
 }
 
-a:hover { color: #f5ffff; }
+a:hover { 
+	color: #f5ffff; 
+
+	cursor: 
+	url("https://downloads.totallyfreecursors.com/cursor_files/link350.ani"), 
+	url("https://downloads.totallyfreecursors.com/thumbnails/link347.gif"), auto;
+}
 
 h1,h2 {
     color:#12efdd;
