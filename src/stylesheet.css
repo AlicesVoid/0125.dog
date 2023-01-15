@@ -135,6 +135,7 @@ body {
 	background: black;
 	color:  aliceblue;}
 
+/* Rainbow Color Animation */
 @keyframes rainbow {
     0% {color: darkviolet;}
     10% {color: indigo;}
@@ -147,4 +148,40 @@ body {
     80% {color: pink;}
     90% {color: violet;}
     100% {color: magenta;}
+}
+
+
+/* Mobile only */
+@media only screen and (max-width:799px) {
+	.nomobile { display: none !important; }
+	
+	#header {
+		width: 100%;
+		margin: auto;
+	}
+
+	#navbar {
+		width: 100%;
+		margin: auto;
+	}
+
+	#body {
+		padding: 0;
+	}
+	
+	#sidebar {
+		padding: 0;
+		width: 70%;
+		margin: auto;
+	}
+	
+	#main {
+		width: 100%;
+		margin: auto;
+	}
+
+    #footer {
+        width: 100%;
+        margin: auto; 
+    }
 }
