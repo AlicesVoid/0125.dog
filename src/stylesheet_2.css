@@ -128,6 +128,24 @@ body {
 	overflow: auto;
 }
 
+button {
+    position: relative;
+    bottom: -8%;
+    left: 30%;
+    transform: translateX(-50%);
+    height: 10%;
+    width: 30%;
+    background-color: #00ff84; 
+  }
+
+button:hover {
+    animation-name: rainbow;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+  
+
 @font-face {
 	font-family: '000webfont';
 	src: url(https://cinni.net/fonts/basiic.ttf);
