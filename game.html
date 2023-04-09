@@ -6,7 +6,7 @@
 <html>
     <head>
         <!-- Standard Header Stuff -->
-        <title>0125.dog ; Links</title>
+        <title>0125.dog ; GAMEING !!!</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#12efdd">
@@ -26,19 +26,21 @@
                 <hr>
             </div>
             <div class="box content">
-                <h2>MODEM GAME</h2>
+                <h2>The vsBW Casino $,$!!</h2>
                 <hr>
-                <div class="box weird">
-                    <img src="" class="Left Image" style="float: left; width: 50%;">
-                    <img src="" class="Right Image" style="float: right; width: 50%;">
+                <div class="box weird" id="box weird">
+                    <a href="https://vsbattles.fandom.com/wiki/Tiering_System" target="_blank" id="infosheet" style="display:none";>How To Determine Who is Stronger?</a>
+                    <img src="" class="Left Image" id="Left Image" style="float: left; width: 50%;">
+                    <img src="" class="Right Image" id="Right Image"  style="float: right; width: 50%;">
                 </div>
                 <div class="box whimsy" id="box whimsy">
                     <p id="textOut"></p>
                     <p id="textOut"></p>
                     <p id="textOut"></p>
                     <p id="textOut"></p>
+                    <p id="textOut"></p>
                 </div>
-                <button onclick="changeWhimsyOpponents()" class="start" id="Bstart">START GAME!</button>
+                <button onclick="gameLoader()" class="start" id="Bstart">LOAD GAME</button>
                 <button class="select" id="Bxx">X.x</button>
                 <button class="select" id="Boo">0.O</button>
                 </div>
@@ -59,41 +61,191 @@
 
         //src="/game.js"
         <script>
-                            
-            //removes \n \t \ax0 from a string
-            function removeNewlinesTabs(s) {
-                s = s.replace(/\\\\n|\\\\t|\\\\xa0|\\n|\\t|\\xa0/g, '');
-                return s;
-            }
-            
+
+            const puppeteer = require('puppeteer');
             //finds the next page from a given page
             async function get_page(url="https://vsbattles.fandom.com/wiki/Category:Characters") {
-                const response = await fetch(url);
-                const html = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, "text/html");
-                const next_button = doc.querySelector(".category-page__pagination-next");
+                const browser = await puppeteer.launch();
+                const page = await browser.newPage();
+                await page.goto(url);
+                const next_button = await page.$('.category-page__pagination-next');
                 let link;
                 if (next_button === null) {
-                link = "<https://vsbattles.fandom.com/wiki/Category:Characters>";
+                  link = "https://vsbattles.fandom.com/wiki/Category:Characters";
                 } else {
-                link = next_button.getAttribute("href");
+                  link = await page.evaluate((button) => button.getAttribute('href'), next_button);
                 }
+                await browser.close();
                 return link;
-            }
-            
+              }     
+       
+      
             //creates the full list of pages from the vsBW
             async function make_page_list() {
                 let page_list = ["https://vsbattles.fandom.com/wiki/Category:Characters"];
                 let current_page = page_list[0];
             
-                while (current_page !== "https://vsbattles.fandom.com/wiki/Category:Characters") {
-                current_page = await get_page(current_page);
-                page_list.push(current_page);
-                }
+                do {
+                    current_page = await get_page(current_page);
+                    console.log("next page is " + current_page)
+                    page_list.push(current_page);
+
+                } while (current_page != "https://vsbattles.fandom.com/wiki/Category:Characters") 
             
                 return page_list;
             }
+
+            ///////////////////////////////////////////// DISPLAY FUNCTIONS /////////////////////////////////////
+            
+            //changes the src of an left image in HTML
+            function changeLeftImageSrc(newSrc) {
+                const textBox = document.getElementById("box weird");
+                console.log(textBox);
+                const image = document.getElementById("Left Image");
+                console.log(image);
+                image.src = newSrc;
+            }
+            
+            //changes the src of a right image in HTML
+            function changeRightImageSrc(newSrc) {
+                const textBox = document.getElementById("box weird");
+                console.log(textBox);
+                const image = document.getElementById("Right Image");
+                console.log(image);
+                image.src = newSrc;
+            }
+
+            //displays text piece by piece.
+            function typeWriter(string, div) {
+                var i = 0;
+                var speed = 50; // in milliseconds
+                function type() {
+                  if (i < string.length) {
+                    div.innerHTML += string.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                  }
+                }
+                type();
+                setTimeout(function() {}, 500);
+              }
+
+            ///////////////////////////////////////////// TEXT FUNCTIONS //////////////////////////////////////
+            
+            //Writes 5 Blank Lines
+            function writeBlank() {
+                const lines = [
+                    '',
+                    '',
+                    '',
+                    '',
+                    ''
+                ];
+                const textBox = document.getElementById("box whimsy");
+                let elements = textBox.getElementsByTagName("p");
+                for (let i = 0; i < elements.length; i++) {
+                    const line = lines[i];
+                    const element = elements[i];
+                    element.textContent = line;
+                  }
+            }
+
+            //Writes the Introduction
+            function writeIntro() {
+                const lines = [
+                    "Welcome to vsBattles Casino:",
+                    "- I will show you Two Characters",
+                    "- Select the Stronger Character",
+                    "------- Tier: #-@ -> Strength ------",
+                    "- press START GAME! to start."
+                ];
+                return lines;
+            }
+
+            //Writes the Prompt for a Question
+            function writeQuestion(Opponent1 = "funny", Opponent2 = "silly") {
+                const lines = [
+                    Opponent1 + " versus " + Opponent2,
+                    "    who would win?",
+                    "    X.x | " + Opponent1,
+                    "    0.O | " + Opponent2,
+                ];
+                return lines;
+            }
+
+            //changes the Text in Box Whimsy
+            function writeToWhimsy(lines) {
+                const textBox = document.getElementById("box whimsy");
+                let elements = textBox.getElementsByTagName("p");
+                for (let i = 0; i < elements.length; i++) {
+                  const line = lines[i];
+                  const element = elements[i];
+                  element.textContent = '';
+                  setTimeout(() => {
+                    typeWriter(line, element);
+                  }, i * 1700); // change the delay time between lines by adjusting this value (in milliseconds)
+                }
+            }              
+
+            // SENDS OPPONENTS TO Box Whimsy
+            function changeWhimsyOpponents() {
+                writeToWhimsy(writeQuestion());
+            }
+
+            /////////////////////////////// FINAL //////////////////////////////
+
+            // Ties it altogether :D 
+            function gameLoader() {
+                
+                //Assert Buttons & Text 
+                const Bstart = document.getElementById("Bstart");
+                const Bx = document.getElementById("Bxx");
+                const Bo = document.getElementById("Boo");
+                const info = document.getElementById("infosheet");
+                const box1 = document.getElementById("box weird");
+                const box2 = document.getElementById("box whimsy");
+                gameRun    = true;
+
+                //generates the list of characters once
+                opps_list = make_page_list();
+                console.log(opps_list[1])
+
+                //Runs Rounds of the Game
+                function gameStreak() {
+
+                    //loads the game
+                    Bstart.textContent = 'RESET GAME...';
+                }
+                
+                //Start Introduction
+                if(info.style.display != 'block') {
+                    writeBlank();
+                    info.style.display='block';
+                    changeRightImageSrc("https://qph.cf2.quoracdn.net/main-qimg-6dad7e9134fa6a48c58620c4fe41cfc4-lq")
+                    changeLeftImageSrc("https://static.wikia.nocookie.net/vsbattles/images/a/a7/Tiering_System_Render.png/revision/latest/scale-to-width-down/350?cb=20190401174910")
+                    writeToWhimsy(writeIntro());
+                    Bstart.addEventListener('click',function(){event.preventDefault();gameStreak();});
+                    Bstart.textContent = 'START GAME!';
+
+                }
+
+                
+
+                //Bstart.addEventListener("click", gameStreak());
+                //Bstart.addEventListener("click", )
+            }
+
+
+            /////////////////////// OLD CODE //////////////////////////////////     
+            /* z
+            
+            //removes \n \t \ax0 from a string
+            function removeNewlinesTabs(s) {
+                    s = s.replace(/\\\\n|\\\\t|\\\\xa0|\\n|\\t|\\xa0/g, '');
+                    return s;
+                }
+                
+            
             
             //gets a random character's wiki from a given page
             async function get_random_character(url) {
@@ -233,73 +385,8 @@
             // Returns the result as an array
             return strongest;
             }
-            
-            ///////////////////////////////////////////// DISPLAY FUNCTIONS /////////////////////////////////////
-            
-            //changes the src of an left image in HTML
-            function changeLeftImageSrc(newSrc) {
-            const image = document.querySelector('.Left Image');
-            image.setAttribute('src', newSrc);
-            }
-            
-            //changes the src of an left image in HTML
-            function changeRightImageSrc(newSrc) {
-            const image = document.querySelector('.Right Image');
-            image.setAttribute('src', newSrc);
-            }
-            
-            
-            ///////////////////////////////////////////// TEXT FUNCTIONS //////////////////////////////////////
-
-            //Writes the Introduction
-            function writeIntro() {
-                const lines = [
-                    "Welcome to vsBattles Casino",
-                    "I will show you two characters",
-                    "You select who is MOST POWERFUL",
-                    "press START GAME! again to start.",
-                ];
-                return lines;
-            }
-
-            //Writes the Prompt for a Question
-            function writeQuestion(Opponent1 = "funny", Opponent2 = "silly") {
-                const lines = [
-                    Opponent1 + " versus " + Opponent2,
-                    "    who would win?",
-                    "    X.x | " + Opponent1,
-                    "    0.O | " + Opponent2,
-                ];
-                return lines;
-            }
-
-            //changes the Text in Box Whimsy
-            function writeToWhimsy(lines) {
-                const textBox = document.getElementById("box whimsy");
-                let elements = textBox.getElementsByTagName("p");
-                for(let i = 0; i < elements.length; i++) {
-                    elements[i].textContent = lines[i];
-                }
-            }
-
-            // SENDS OPPONENTS TO Box Whimsy
-            function changeWhimsyOpponents() {
-                writeToWhimsy(writeQuestion());
-            }
-
-            /////////////////////////////// FINAL //////////////////////////////
-
-            // Ties it altogether :D 
-            function gameLoader() {
-                //Assert Buttons
-                const Bstart = document.getElementById("Bstart");
-                const Bx = document.getElementById("Bxx");
-                const Bo = document.getElementById("Boo");
-
-                //Start Introduction
-                writeToWhimsy(writeIntro());
-                //Bstart.addEventListener("click", )
-            }
+ 
+            */
 
         </script> 
 
